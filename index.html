@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMPK — Maison de Haute Couture</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@100;200;300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="showPage('home')">
+    <img src="Fichier 4.png" alt="LMPK">
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Accueil</a></li>
+    <li><a onclick="showPage('config')" id="nav-config">Configurer</a></li>
+    <li><a onclick="showPage('univers')" id="nav-univers">Univers</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Atelier</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-icon" onclick="showPage('config')">Personnaliser</div>
+    <div class="nav-icon" onclick="openCart()">
+      Panier
+      <div class="cart-count" id="cart-count">0</div>
+    </div>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<!-- PANIER -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-titre">Votre sélection</div>
+    <div class="cart-close" onclick="closeCart()">Fermer ✕</div>
+  </div>
+  <div class="cart-items" id="cart-items-list">
+    <div class="cart-empty">
+      <div class="cart-empty-ico">◇</div>
+      <div class="cart-empty-txt">Votre collection est vide</div>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total estimé</span>
+      <span class="cart-total-prix" id="cart-total">0 €</span>
+    </div>
+    <button class="btn-commander" onclick="showToast('Demande de rendez-vous envoyée ✓')">Prendre rendez-vous →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE HOME
+══════════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Collection Signature — Édition Limitée 30 exemplaires</div>
+      <img class="hero-logo-img" src="Fichier 4.png" alt="LMPK">
+      <div class="hero-tagline">Portez ce que Lempicka a osé peindre.</div>
+      <div class="hero-divider"><div class="hero-diamond"></div></div>
+      <div class="hero-cta-group">
+        <button class="btn-primary" onclick="showPage('config')">Configurer ma robe</button>
+        <button class="btn-ghost" onclick="showPage('univers')">Découvrir l'univers</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <div class="scroll-text">Explorer</div>
+    </div>
+  </section>
+
+  <section class="section-histoire">
+    <div>
+      <div class="histoire-eyebrow">La démarche</div>
+      <h2 class="histoire-titre">Une œuvre d'art<br>à <em>porter</em></h2>
+      <div class="histoire-corps">
+        <p>LMPK naît d'une obsession : traduire la puissance picturale de Tamara de Lempicka en haute couture. Chaque pièce est une réinterprétation directe d'une toile, transformée en volume, en matière, en silhouette.</p>
+        <p>La robe « Jeune Fille en Vert » est la première création de la collection Signature. Trente exemplaires numérotés, entièrement personnalisables, fabriqués à la main.</p>
+      </div>
+      <div class="histoire-signature">
+        <div class="sig-line"></div>
+        <div class="sig-text">Paris, 2025</div>
+      </div>
+    </div>
+    <div>
+      <div style="position:relative;">
+        <div class="histoire-annee">1927</div>
+        <div class="histoire-frame">
+          <img class="histoire-tableau" src="tableau.png" alt="Jeune Fille en Vert, Tamara de Lempicka">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-oeuvre">
+    <div class="oeuvre-label">Inspiration</div>
+    <div class="oeuvre-citation">«Mon but : ne pas copier. Créer un nouveau style, des couleurs lumineuses et brillantes, retrouver l’élégance dans mes modèles. »</div>
+    <div class="oeuvre-auteur">Tamara de Lempicka — 1927</div>
+    <div class="oeuvre-stats">
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">Exemplaires numérotés</div></div>
+      <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Configurations possibles</div></div>
+      <div class="stat-item"><div class="stat-num">01</div><div class="stat-label">Pièce unique, la vôtre</div></div>
+    </div>
+  </section>
+
+  <section class="section-piece">
+    <div class="piece-header">
+      <div>
+        <div style="font-size:0.55rem;letter-spacing:0.3em;color:var(--accent);text-transform:uppercase;margin-bottom:.5rem;">Collection Signature</div>
+        <h2 class="piece-titre">La pièce</h2>
+      </div>
+      <div class="piece-ref">REF. LMPK-JFV-001 / 30</div>
+    </div>
+    <div class="piece-card">
+      <div class="piece-visuel" onclick="showPage('config')">
+        <img class="piece-image-preview" src="dernier.png" alt="Robe Jeune Fille en Vert">
+        <svg class="piece-svg-preview" viewBox="0 0 1200 1200" style="fill:#E8E4DB;">
+          <path d="M816.75,925.8l-.74-.79-5.81-8.29s-12.55-5.06-20.62-14.29c-.42-.42-10.39-10.75-10.39-10.75,0,0-8.6.7-14.08,5.34-.63.53-7.07,3.43-7.07,3.43,0,0-5.06,1.53-7.86-.74-.47,0-17.14-2.21-20.2-9.91-.42-.63-2.18-23.17-2.18-23.17l-8.17-6.7-7.97-25.78-7.33-24.3-4.43-18.5-5.86-27.09-4.69-19.08-6.28-31-2.9-17.24-5.98-40.49-2.13-17.45-1.26-28.56,10.62-38.14s-6.63-18.97-2.59-26.85c.38-.87,2.88-9.44,2.01-11.66s6.75-1.53,6.75-1.53c0,0,8.26.66,11.05-.49l1.95-1.93.06-6.63,14.03-20.25,1.24-2.09-2.52-19.26-6.44-23.01,9.68-7.2,7.04-8.52.6-1.87-.3-9.8,5.29-9.16,1.02-3.28.43-6.01s.17-3.35-3.62-7.52c-1.41-1.58-10.53-19.18-10.53-19.18l-4.31-7.93,20.17-26.16,2.43-4.77.6-2.47v-7.12l-10.62-14.36,11.09-15.55-1.71-13.5,7.97-.9-.04-6.99-17.48-13.16-.64-.98,3.37-13.51-4.35-6.77.04-23.99-1.15-4.13-2.77-2h-2.05l-3.2,2.68-19.77-2.77-6.01-9.24-5.8-7.46-5.76-4.09h-4.18l-13.32,13.72-11.73,14.1-1.66,3.37-1.71,4.86.04,2.47-.04.81h-2.43c.39.41.71.88.9,1.4,1.83.88,3,2.59,3.64,4.49.61,1.8.89,3.81,1.07,5.7.18,1.98.14,4.12-.71,5.95-.99,2.12-3.32,3.18-5.6,3.1-1.4-.04-2.64-.53-3.93-1.01-.99-.37-2.06-.67-2.67-1.61-.61-.94-.78-2.12-.88-3.21-.14-1.46-.2-2.93-.1-4.39.06-.97.2-1.91.48-2.82-.02-.88.17-2.78,1.1-3.39-.03-.71.5-2.18.54-2.89l-1.99,2.26-1.79,2.34-16.4,3.13-4.09-.04-8.23,3.37-9.21,4.94-6.57,3.41-10.06,4.99-13.3,5.8-14.16,6.6-6.61,3.32-8.23,4.94-5.03,3.41-3.37,2.51-2.47,2.43-2.47,1.79-2.56,3.2-2.52,4.13-1.54,5.03-.85,3.28,1.28,15.91,1.95,7.16,2.52,9.33,2.43,9.12.81,3.37.94,6.82,4.25,11.52.84,4.25.64,3.54.84,4.82.97,3.6.84,11.71-1.68,4.6-.05,4.82-2.45,4.18-3.36,6.73-.77.8-1.7,4.07-.8,1.76-.85,2.42-.88,1.73-1.65,4.15-2.45,5.67-.85,3.43-1.62,3.27-1.68,4.21-.83,2.5-1.65,3.35-.85,1.68-.8,3.3-.83,7.4-.8,5.14-.91,11.47-.77,7.4-.83,2.56-.85,5.86-.05,7.24-.03,21,2.17,14.12.62,7.39.76,3.31.83,4.07,1.11,6.76.48,4.07,1.38,9.66.9,10.84.9,13.87.69,14.56.14,6.49-.14,14.29-.69,4.56-.83,10.01-1.38,9.11-1.31,7.87-2.21,15.95-2.07,12.36-2.97,15.88-2.83,15.74-3.66,16.29-2.07,11.32-2.14,9.94-2.97,12.77-11.68,48.22-25.72,39.28-7.49,23.96s-2.23,5.67-4.74,6.13c-2.51.46-.12-1.56-.12-1.56l-11.16,3.44-11.62,4.27-6.79,2.42-13.2,5.76-3.72,1.21h-20.83l-1.21,1.39-.84,4.55,2.2,12.16-1.12,4.99-.1,6.62-.73,4.21,1.63,3.09,11.14,5.2,1.91-.56,3.31,3.03,9.46,4.85,9.14,1.28,5.57-.57.52,2.97,12.02.28,4.26-2.01,3.65,2.13,4.55,1.57,8.7,1.46,8.26.73,7.36,1.35,5.22,1.35,7.97,1.96,16.96.22,11.12,1.52,28.42,2.28,8.64-.58,7.73-.54,13.17-.92,2.31.68,1.86-.24-.35,6.1,10.17.37,7.27-.26,3.18-1.21,4.61,3.49,7.69.92,5.71.69,8.48,1.38,13.23-.08h36.96l4.36-.14,3.96-.84,6.15-.99,5.24-.67,3.87-.09,3.71,2.37,4.78-5.68,2.03-2.33h8.86l1.24-.03,19.4.06,3.52-2.02,3.92-.29,3.35-2.45,7.83-1,5.86-1.66,2.61-.5,2.39-1.37,4.94-.12,6.77,1.75,15.14,3.57,11.42-9.51,6.12-2.33,5.9-3.31,8.56-4.81,8.87-5.55,1.47-7.11.82-2.82v-16.6l-6.24-4.16Z"/>
+        </svg>
+        <div class="piece-hover-label">Cliquer pour personnaliser →</div>
+      </div>
+      <div>
+        <div class="piece-nom">Jeune Fille en Vert</div>
+        <div class="piece-annee">Collection Signature — 1927 / 2025</div>
+        <p class="piece-desc">Inspirée du chef-d'œuvre de Tamara de Lempicka peint entre 1927 et 1930, cette robe de haute couture capture l'essence de l'Art Déco : lignes architecturales, volume sculpté, présence absolue. Chaque détail — des volants en cascade à la traîne de cour — est entièrement personnalisable selon votre vision.</p>
+        <div class="piece-specs">
+          <div class="spec-row"><span class="spec-key">Matière principale</span><span class="spec-val">Soie duchesse, crêpe satin</span></div>
+          <div class="spec-row"><span class="spec-key">Finitions</span><span class="spec-val">Broderies à la main, Paris</span></div>
+          <div class="spec-row"><span class="spec-key">Délai de confection</span><span class="spec-val">8 à 12 semaines</span></div>
+          <div class="spec-row"><span class="spec-key">Édition</span><span class="spec-val">Limitée à 30 exemplaires</span></div>
+          <div class="spec-row"><span class="spec-key">Essayages inclus</span><span class="spec-val">3 rendez-vous atelier</span></div>
+        </div>
+        <div class="piece-prix-zone">
+          <div class="piece-prix">À partir de 1 890 <span>€</span></div>
+          <div class="piece-edition">JEUNE FILLE EN VERT — N°__ / 30</div>
+          <div class="piece-actions">
+            <button class="btn-primary" onclick="showPage('config')">Personnaliser ma robe →</button>
+            <button class="btn-ghost" onclick="showPage('contact')">Prendre rendez-vous atelier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-looks">
+    <div class="looks-header">
+      <div>
+        <div class="looks-label">Sélection boutique</div>
+        <h3 class="looks-title">Looks personnalisés</h3>
+      </div>
+      <div class="looks-sub">La même robe, plusieurs visions</div>
+    </div>
+    <div class="looks-grid">
+      <article class="look-card" onclick="openLookPreset('blanc','cascade','longue','look-court-chapeau')" style="cursor:pointer;">
+        <div class="look-thumb">
+          <div class="look-container">
+            <img src="dernier.png" alt="" class="look-bg-img" style="-webkit-mask-image:none;mask-image:none;">
+            <svg class="look-product-svg" viewBox="0 0 1200 1200" style="-webkit-mask-image:url('dernier.png');mask-image:url('dernier.png');">
+              <path fill="#E8E4DB" d="M816.75,925.8l-.74-.79-5.81-8.29s-12.55-5.06-20.62-14.29c-.42-.42-10.39-10.75-10.39-10.75,0,0-8.6.7-14.08,5.34-.63.53-7.07,3.43-7.07,3.43,0,0-5.06,1.53-7.86-.74-.47,0-17.14-2.21-20.2-9.91-.42-.63-2.18-23.17-2.18-23.17l-8.17-6.7-7.97-25.78-7.33-24.3-4.43-18.5-5.86-27.09-4.69-19.08-6.28-31-2.9-17.24-5.98-40.49-2.13-17.45-1.26-28.56,10.62-38.14s-6.63-18.97-2.59-26.85c.38-.87,2.88-9.44,2.01-11.66s6.75-1.53,6.75-1.53c0,0,8.26.66,11.05-.49l1.95-1.93.06-6.63,14.03-20.25,1.24-2.09-2.52-19.26-6.44-23.01,9.68-7.2,7.04-8.52.6-1.87-.3-9.8,5.29-9.16,1.02-3.28.43-6.01s.17-3.35-3.62-7.52c-1.41-1.58-10.53-19.18-10.53-19.18l-4.31-7.93,20.17-26.16,2.43-4.77.6-2.47v-7.12l-10.62-14.36,11.09-15.55-1.71-13.5,7.97-.9-.04-6.99-17.48-13.16-.64-.98,3.37-13.51-4.35-6.77.04-23.99-1.15-4.13-2.77-2h-2.05l-3.2,2.68-19.77-2.77-6.01-9.24-5.8-7.46-5.76-4.09h-4.18l-13.32,13.72-11.73,14.1-1.66,3.37-1.71,4.86.04,2.47-.04.81h-2.43c.39.41.71.88.9,1.4,1.83.88,3,2.59,3.64,4.49.61,1.8.89,3.81,1.07,5.7.18,1.98.14,4.12-.71,5.95-.99,2.12-3.32,3.18-5.6,3.1-1.4-.04-2.64-.53-3.93-1.01-.99-.37-2.06-.67-2.67-1.61-.61-.94-.78-2.12-.88-3.21-.14-1.46-.2-2.93-.1-4.39.06-.97.2-1.91.48-2.82-.02-.88.17-2.78,1.1-3.39-.03-.71.5-2.18.54-2.89l-1.99,2.26-1.79,2.34-16.4,3.13-4.09-.04-8.23,3.37-9.21,4.94-6.57,3.41-10.06,4.99-13.3,5.8-14.16,6.6-6.61,3.32-8.23,4.94-5.03,3.41-3.37,2.51-2.47,2.43-2.47,1.79-2.56,3.2-2.52,4.13-1.54,5.03-.85,3.28,1.28,15.91,1.95,7.16,2.52,9.33,2.43,9.12.81,3.37.94,6.82,4.25,11.52.84,4.25.64,3.54.84,4.82.97,3.6.84,11.71-1.68,4.6-.05,4.82-2.45,4.18-3.36,6.73-.77.8-1.7,4.07-.8,1.76-.85,2.42-.88,1.73-1.65,4.15-2.45,5.67-.85,3.43-1.62,3.27-1.68,4.21-.83,2.5-1.65,3.35-.85,1.68-.8,3.3-.83,7.4-.8,5.14-.91,11.47-.77,7.4-.83,2.56-.85,5.86-.05,7.24-.03,21,2.17,14.12.62,7.39.76,3.31.83,4.07,1.11,6.76.48,4.07,1.38,9.66.9,10.84.9,13.87.69,14.56.14,6.49-.14,14.29-.69,4.56-.83,10.01-1.38,9.11-1.31,7.87-2.21,15.95-2.07,12.36-2.97,15.88-2.83,15.74-3.66,16.29-2.07,11.32-2.14,9.94-2.97,12.77-11.68,48.22-25.72,39.28-7.49,23.96s-2.23,5.67-4.74,6.13c-2.51.46-.12-1.56-.12-1.56l-11.16,3.44-11.62,4.27-6.79,2.42-13.2,5.76-3.72,1.21h-20.83l-1.21,1.39-.84,4.55,2.2,12.16-1.12,4.99-.1,6.62-.73,4.21,1.63,3.09,11.14,5.2,1.91-.56,3.31,3.03,9.46,4.85,9.14,1.28,5.57-.57.52,2.97,12.02.28,4.26-2.01,3.65,2.13,4.55,1.57,8.7,1.46,8.26.73,7.36,1.35,5.22,1.35,7.97,1.96,16.96.22,11.12,1.52,28.42,2.28,8.64-.58,7.73-.54,13.17-.92,2.31.68,1.86-.24-.35,6.1,10.17.37,7.27-.26,3.18-1.21,4.61,3.49,7.69.92,5.71.69,8.48,1.38,13.23-.08h36.96l4.36-.14,3.96-.84,6.15-.99,5.24-.67,3.87-.09,3.71,2.37,4.78-5.68,2.03-2.33h8.86l1.24-.03,19.4.06,3.52-2.02,3.92-.29,3.35-2.45,7.83-1,5.86-1.66,2.61-.5,2.39-1.37,4.94-.12,6.77,1.75,15.14,3.57,11.42-9.51,6.12-2.33,5.9-3.31,8.56-4.81,8.87-5.55,1.47-7.11.82-2.82v-16.6l-6.24-4.16Z"/>
+            </svg>
+            <!-- gants courts -->
+            <img src="gants-courts.png" alt="" class="look-bg-img" style="z-index:2;-webkit-mask-image:none;mask-image:none;">
+            <!-- chapeau -->
+            <img src="chapeau.png" alt="" class="look-bg-img" style="z-index:3;-webkit-mask-image:none;mask-image:none;">
+            <img src="bouton.png" alt="" class="look-button-img">
+          </div>
+        </div>
+        <div class="look-name">Original couture</div>
+        <div class="look-meta">Blanc • Cascade • Traîne longue • Gants + chapeau</div>
+      </article>
+      <article class="look-card" onclick="openLookPreset('bleu','reduit','sans','look-court-chapeau')" style="cursor:pointer;">
+        <div class="look-thumb">
+          <div class="look-container">
+            <img src="capture1.png" alt="Look bleu reduit court" class="look-bg-img" style="-webkit-mask-image:none;mask-image:none;">
+          </div>
+        </div>
+        <div class="look-name">Bleu réduit court</div>
+        <div class="look-meta">Bleu • Volants réduits • Sans traîne • Chapeau</div>
+      </article>
+      <article class="look-card" onclick="openLookPreset('rouge','sans','longue','look-long-chapeau')" style="cursor:pointer;">
+        <div class="look-thumb">
+          <div class="look-container">
+            <img src="capture2.png" alt="Look rouge total long" class="look-bg-img" style="-webkit-mask-image:none;mask-image:none;">
+          </div>
+        </div>
+        <div class="look-name">Rouge total long</div>
+        <div class="look-meta">Rouge • Sans volant • Traîne longue • Gants + chapeau</div>
+      </article>
+      <article class="look-card" onclick="openLookPreset('or-pale','cascade','courte','gants-courts')" style="cursor:pointer;">
+        <div class="look-thumb">
+          <div class="look-container">
+            <img src="capture3.png" alt="Look dore traine courte" class="look-bg-img" style="-webkit-mask-image:none;mask-image:none;">
+          </div>
+        </div>
+        <div class="look-name">Doré traîne courte</div>
+        <div class="look-meta">Or pâle • Cascade • Traîne courte • Gants courts</div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="Fichier 4.png" alt="LMPK">
+      <div class="footer-brand-txt">Maison de haute couture.<br>Inspirée par Tamara de Lempicka.<br>Paris, 2025.</div>
+    </div>
+    <div>
+      <div class="footer-col-titre">Navigation</div>
+      <ul class="footer-links">
+        <li><a onclick="showPage('home')">Accueil</a></li>
+        <li><a onclick="showPage('config')">Configurateur</a></li>
+        <li><a onclick="showPage('univers')">Univers LMPK</a></li>
+        <li><a onclick="showPage('contact')">L'Atelier</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-titre">La pièce</div>
+      <ul class="footer-links">
+        <li><a>Jeune Fille en Vert</a></li>
+        <li><a>Édition limitée 30 ex.</a></li>
+        <li><a>Guide des tailles</a></li>
+        <li><a>Entretien & conservation</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 LMPK — Tous droits réservés</div>
+    <div class="footer-accent">Collection Signature — Édition Limitée</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE CONFIGURATEUR
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-config">
+  <div class="config-header">
+    <div>
+      <div class="config-breadcrumb">
+        <span onclick="showPage('home')" style="cursor:pointer;color:rgba(255,255,255,0.2)">Accueil</span>
+        &nbsp;/&nbsp;<span>Personnaliser</span>
+      </div>
+      <div class="config-header-title">Configurateur</div>
+    </div>
+    <div class="config-header-ref">« Jeune fille en vert », 1927–1930</div>
+  </div>
+
+  <div class="config-main">
+    <div id="container">
+      <svg class="color-changing-svg" id="product-svg" viewBox="0 0 1200 1200">
+        <path id="product-shape" fill="#E8E4DB" d="M816.75,925.8l-.74-.79-5.81-8.29s-12.55-5.06-20.62-14.29c-.42-.42-10.39-10.75-10.39-10.75,0,0-8.6.7-14.08,5.34-.63.53-7.07,3.43-7.07,3.43,0,0-5.06,1.53-7.86-.74-.47,0-17.14-2.21-20.2-9.91-.42-.63-2.18-23.17-2.18-23.17l-8.17-6.7-7.97-25.78-7.33-24.3-4.43-18.5-5.86-27.09-4.69-19.08-6.28-31-2.9-17.24-5.98-40.49-2.13-17.45-1.26-28.56,10.62-38.14s-6.63-18.97-2.59-26.85c.38-.87,2.88-9.44,2.01-11.66s6.75-1.53,6.75-1.53c0,0,8.26.66,11.05-.49l1.95-1.93.06-6.63,14.03-20.25,1.24-2.09-2.52-19.26-6.44-23.01,9.68-7.2,7.04-8.52.6-1.87-.3-9.8,5.29-9.16,1.02-3.28.43-6.01s.17-3.35-3.62-7.52c-1.41-1.58-10.53-19.18-10.53-19.18l-4.31-7.93,20.17-26.16,2.43-4.77.6-2.47v-7.12l-10.62-14.36,11.09-15.55-1.71-13.5,7.97-.9-.04-6.99-17.48-13.16-.64-.98,3.37-13.51-4.35-6.77.04-23.99-1.15-4.13-2.77-2h-2.05l-3.2,2.68-19.77-2.77-6.01-9.24-5.8-7.46-5.76-4.09h-4.18l-13.32,13.72-11.73,14.1-1.66,3.37-1.71,4.86.04,2.47-.04.81h-2.43c.39.41.71.88.9,1.4,1.83.88,3,2.59,3.64,4.49.61,1.8.89,3.81,1.07,5.7.18,1.98.14,4.12-.71,5.95-.99,2.12-3.32,3.18-5.6,3.1-1.4-.04-2.64-.53-3.93-1.01-.99-.37-2.06-.67-2.67-1.61-.61-.94-.78-2.12-.88-3.21-.14-1.46-.2-2.93-.1-4.39.06-.97.2-1.91.48-2.82-.02-.88.17-2.78,1.1-3.39-.03-.71.5-2.18.54-2.89l-1.99,2.26-1.79,2.34-16.4,3.13-4.09-.04-8.23,3.37-9.21,4.94-6.57,3.41-10.06,4.99-13.3,5.8-14.16,6.6-6.61,3.32-8.23,4.94-5.03,3.41-3.37,2.51-2.47,2.43-2.47,1.79-2.56,3.2-2.52,4.13-1.54,5.03-.85,3.28,1.28,15.91,1.95,7.16,2.52,9.33,2.43,9.12.81,3.37.94,6.82,4.25,11.52.84,4.25.64,3.54.84,4.82.97,3.6.84,11.71-1.68,4.6-.05,4.82-2.45,4.18-3.36,6.73-.77.8-1.7,4.07-.8,1.76-.85,2.42-.88,1.73-1.65,4.15-2.45,5.67-.85,3.43-1.62,3.27-1.68,4.21-.83,2.5-1.65,3.35-.85,1.68-.8,3.3-.83,7.4-.8,5.14-.91,11.47-.77,7.4-.83,2.56-.85,5.86-.05,7.24-.03,21,2.17,14.12.62,7.39.76,3.31.83,4.07,1.11,6.76.48,4.07,1.38,9.66.9,10.84.9,13.87.69,14.56.14,6.49-.14,14.29-.69,4.56-.83,10.01-1.38,9.11-1.31,7.87-2.21,15.95-2.07,12.36-2.97,15.88-2.83,15.74-3.66,16.29-2.07,11.32-2.14,9.94-2.97,12.77-11.68,48.22-25.72,39.28-7.49,23.96s-2.23,5.67-4.74,6.13c-2.51.46-.12-1.56-.12-1.56l-11.16,3.44-11.62,4.27-6.79,2.42-13.2,5.76-3.72,1.21h-20.83l-1.21,1.39-.84,4.55,2.2,12.16-1.12,4.99-.1,6.62-.73,4.21,1.63,3.09,11.14,5.2,1.91-.56,3.31,3.03,9.46,4.85,9.14,1.28,5.57-.57.52,2.97,12.02.28,4.26-2.01,3.65,2.13,4.55,1.57,8.7,1.46,8.26.73,7.36,1.35,5.22,1.35,7.97,1.96,16.96.22,11.12,1.52,28.42,2.28,8.64-.58,7.73-.54,13.17-.92,2.31.68,1.86-.24-.35,6.1,10.17.37,7.27-.26,3.18-1.21,4.61,3.49,7.69.92,5.71.69,8.48,1.38,13.23-.08h36.96l4.36-.14,3.96-.84,6.15-.99,5.24-.67,3.87-.09,3.71,2.37,4.78-5.68,2.03-2.33h8.86l1.24-.03,19.4.06,3.52-2.02,3.92-.29,3.35-2.45,7.83-1,5.86-1.66,2.61-.5,2.39-1.37,4.94-.12,6.77,1.75,15.14,3.57,11.42-9.51,6.12-2.33,5.9-3.31,8.56-4.81,8.87-5.55,1.47-7.11.82-2.82v-16.6l-6.24-4.16Z"/>
+      </svg>
+      <svg id="overlay-svg" viewBox="0 0 1200 1200">
+        <g id="volants" opacity="1">
+          <path id="ep-gauche" opacity="0" d="M138 160 Q118 150 105 140 Q96 134 100 150 Q104 162 118 165 Q128 167 138 165 Z" fill="currentColor"/>
+        </g>
+        <path id="traine" d="" fill="currentColor" opacity="0"/>
+        <g id="gants" opacity="0">
+          <path d="M404.17,305.05c1.98.39,4.33.4,6.32,0h2.26c1.17.39,2.44.39,3.61,0,1.15,0,2.25.68,3.42.64,1.41.14,1.66.85.3,1.27-3.3-.26-7.32-.48-10.46.43-1.44.41-3.14.27-5.09-.4l-6.24.32c-1.48.25-3.24,1.04-3.67,2.62-1.12.09-1.93.42-2.43,1.01-.88,4.48-1.53,9-1.94,13.54.41,1.02.63,2.21.66,3.6.48.26.86.69,1.13,1.3.4,6.53.58,13.37.39,20.13-.03,1.09-.26,3.34-1.37,2.54-.61-5.24-.69-10.53-.24-15.85-.8-4.09-1.49-8.19-2.08-12.3.6-5.26.78-10.34.27-15.61.02-1.06.08-1.89,1.23-2.22,1.11-.22,2.28-.41,3.53-.56,5.08,0,6.62-.45,10.39-.45Z" fill="#F7F4EC"/>
+        </g>
+        <g id="chapeau" opacity="0">
+          <ellipse cx="520" cy="152" rx="90" ry="22" fill="#F7F4EC"/>
+          <path d="M470 152 Q476 96 520 90 Q564 96 570 152 Z" fill="#F7F4EC"/>
+          <rect x="506" y="114" width="28" height="36" rx="5" fill="#E6DFD2"/>
+        </g>
+      </svg>
+      <img id="background-image" src="dernier.png" alt="">
+      <img id="train-image" src="data:," alt="">
+      <img id="short-gloves-image" src="data:," alt="">
+      <img id="long-gloves-image" src="data:," alt="">
+      <img id="hat-image" src="data:," alt="">
+      <img id="button-image" src="bouton.png" alt="">
+    </div>
+
+    <div class="panneau">
+      <div class="section">
+        <div class="section-label">couleur</div>
+        <div class="swatches">
+          <div class="swatch active" data-col="blanc" onclick="setColor(this)">
+            <div class="swatch-circle" style="background:radial-gradient(circle at 35% 30%,#ffe56a 0%,#008c17 100%);"></div>
+            <span class="swatch-name">Vert Lempicka</span>
+          </div>
+          <div class="swatch" data-col="rouge" onclick="setColor(this)">
+            <div class="swatch-circle" style="background:linear-gradient(135deg,#ff1f07,#7b1f14);"></div>
+            <span class="swatch-name">Rouge Pur</span>
+          </div>
+          <div class="swatch" data-col="vert" onclick="setColor(this)">
+            <div class="swatch-circle" style="background:linear-gradient(135deg,#02ff34,#1a7a42);"></div>
+            <span class="swatch-name">Vert Profond</span>
+          </div>
+          <div class="swatch" data-col="bleu" onclick="setColor(this)">
+            <div class="swatch-circle" style="background:linear-gradient(135deg,#004cff,#021048);"></div>
+            <span class="swatch-name">Bleu Électrique</span>
+          </div>
+          <div class="swatch" data-col="or-pale" onclick="setColor(this)">
+            <div class="swatch-circle" style="background:linear-gradient(135deg,#f0d878,#b8902a);"></div>
+            <span class="swatch-name">Or Pâle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">volume des volants</div>
+        <div class="opts">
+          <button class="opt-btn active" data-vol="cascade" onclick="setVolant(this)">en cascade<span class="opt-desc">4 volants sculptés — fidèle au tableau</span></button>
+          <button class="opt-btn" data-vol="reduit" onclick="setVolant(this)">réduits<span class="opt-desc">2 volants, silhouette épurée</span></button>
+          <button class="opt-btn" data-vol="sans" onclick="setVolant(this)">sans volant<span class="opt-desc">ligne pure, épaule nue</span></button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">longueur &amp; traîne</div>
+        <div class="opts">
+          <button class="opt-btn active" data-traine="longue" onclick="setTraine(this)">traîne longue<span class="opt-desc">traîne de cour — présence maximale</span></button>
+          <button class="opt-btn" data-traine="courte" onclick="setTraine(this)">traîne courte<span class="opt-desc">légère queue de poisson</span></button>
+          <button class="opt-btn" data-traine="sans" onclick="setTraine(this)">au sol, sans traîne<span class="opt-desc">coupe droite fluide</span></button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">ornements</div>
+        <div class="opts">
+          <button class="opt-btn active" data-orn="sans" onclick="setOrnement(this)">sans accessoire<span class="opt-desc">la robe seule, épurée</span></button>
+          <button class="opt-btn" data-orn="gants-courts" onclick="setOrnement(this)">gants blancs courts<span class="opt-desc">référence directe au tableau</span></button>
+          <button class="opt-btn" data-orn="gants-longs" onclick="setOrnement(this)">gants blancs longs<span class="opt-desc">jusqu'au coude, satin blanc nacré</span></button>
+          <button class="opt-btn" data-orn="chapeau-blanc" onclick="setOrnement(this)">chapeau blanc<span class="opt-desc">ligne couture, bord sculpté</span></button>
+          <button class="opt-btn" data-orn="look-court-chapeau" onclick="setOrnement(this)">look total court + chapeau<span class="opt-desc">gants courts blancs + chapeau blanc</span></button>
+          <button class="opt-btn" data-orn="look-long-chapeau" onclick="setOrnement(this)">look total long + chapeau<span class="opt-desc">gants longs blancs + chapeau blanc</span></button>
+        </div>
+      </div>
+
+      <div class="prix-zone">
+        <div class="deco-line"><div class="deco-diamond"></div></div>
+        <div class="prix-label">estimation — édition limitée</div>
+        <div class="prix-montant" id="prix">2 490 <span>€</span></div>
+        <span class="edition-tag" id="edition">JEUNE FILLE EN VERT — N°01 / 30</span>
+        <div class="config-resume" id="config-resume">
+          <span class="config-tag">émeraude</span>
+          <span class="config-tag">cascade</span>
+          <span class="config-tag">traîne longue</span>
+        </div>
+        <button class="btn-commander" onclick="addToCart()">ajouter à la collection →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE UNIVERS
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-univers">
+  <div class="univers-hero">
+    <img src="Fichier 4.png" alt="LMPK" style="height:80px;width:auto;display:block;margin:0 auto 2rem;">
+    <div class="univers-sous-titre">L'art comme vêtement</div>
+    <p class="univers-intro">LMPK est une maison de haute couture fondée sur une idée radicale : les chefs-d'œuvre de la peinture méritent d'exister dans la réalité. Pas en reproduction, pas en citation — en robe.</p>
+  </div>
+  <div class="univers-grid">
+    <div class="univers-card">
+      <div class="univers-card-num">01</div>
+      <div class="univers-card-titre">La source</div>
+      <div class="univers-card-texte">Tamara de Lempicka (1898–1980) est la figure centrale de l'Art Déco. Ses toiles capturent une modernité brutale, sensuelle, architecturale. LMPK en fait son point de départ absolu.</div>
+    </div>
+    <div class="univers-card">
+      <div class="univers-card-num">02</div>
+      <div class="univers-card-titre">La méthode</div>
+      <div class="univers-card-texte">Chaque robe naît d'une analyse approfondie du tableau : couleurs, volumes, lignes de force, matières suggérées. La toile devient patron. Le pinceau devient fil.</div>
+    </div>
+    <div class="univers-card">
+      <div class="univers-card-num">03</div>
+      <div class="univers-card-titre">L'édition</div>
+      <div class="univers-card-texte">Trente exemplaires par création, numérotés et signés. Chaque acquéreur est co-créateur : la configuration est unique, le numéro est gravé dans la doublure.</div>
+    </div>
+  </div>
+  <div class="univers-lempicka">
+    <div>
+      <div class="lempicka-bloc-titre">Tamara de Lempicka</div>
+      <h2 class="lempicka-titre">La peintre<br>qui inventa<br>le glamour</h2>
+      <div class="lempicka-texte">
+        <p>Née à Varsovie en 1898, Tamara de Lempicka s'impose à Paris dans les années 1920 comme la portraitiste de l'élite internationale. Son style, à la fois cubiste et classique, forge une esthétique immédiatement reconnaissable.</p>
+        <p>« Jeune Fille en Vert » (1927–1930) est l'une de ses œuvres les plus emblématiques. La figure féminine y est sculptée comme du métal poli, les drapés verts devenant presque architecturaux.</p>
+        <p>C'est cette tension entre fragilité et force, entre matière et lumière, que LMPK traduit en couture.</p>
+      </div>
+    </div>
+    <div class="lempicka-quote">Je ne perds jamais de temps. Je ne peins jamais vite. Mais je ne peins jamais lentement non plus. Je peins avec précision.</div>
+  </div>
+  <footer>
+    <div class="footer-brand"><img src="Fichier 4.png" alt="LMPK"><div class="footer-brand-txt">Maison de haute couture.<br>Inspirée par Tamara de Lempicka.</div></div>
+    <div><div class="footer-col-titre">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Accueil</a></li><li><a onclick="showPage('config')">Configurateur</a></li><li><a onclick="showPage('univers')">Univers LMPK</a></li><li><a onclick="showPage('contact')">L'Atelier</a></li></ul></div>
+    <div><div class="footer-col-titre">La pièce</div><ul class="footer-links"><li><a>Jeune Fille en Vert</a></li><li><a>Édition limitée 30 ex.</a></li></ul></div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PAGE CONTACT
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-hero">
+    <div class="contact-titre">L'Atelier</div>
+    <div class="contact-sous">Prise de rendez-vous — Sur invitation</div>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info-label">Nous contacter</div>
+      <div class="contact-info-bloc"><div class="contact-info-titre">Atelier Paris</div><div class="contact-info-val">Sur rendez-vous uniquement<br>Paris, France</div></div>
+      <div class="contact-info-bloc">
+        <div class="contact-info-titre">Le processus</div>
+        <div class="contact-info-val">1. Premier échange — configuration de votre robe<br>2. Rendez-vous atelier — prise de mesures<br>3. Essayage intermédiaire<br>4. Livraison finale — 8 à 12 semaines</div>
+      </div>
+      <div class="contact-info-bloc"><div class="contact-info-titre">Édition limitée</div><div class="contact-info-val">Chaque robe est numérotée.<br>Numéro gravé dans la doublure.<br>Certificat d'authenticité inclus.</div></div>
+    </div>
+    <div>
+      <div class="form-label">Formulaire de contact</div>
+      <div class="form-group"><label>Nom complet</label><input type="text" placeholder="Votre nom"></div>
+      <div class="form-group"><label>Email</label><input type="email" placeholder="votre@email.com"></div>
+      <div class="form-group">
+        <label>Objet</label>
+        <select>
+          <option>Prise de rendez-vous atelier</option>
+          <option>Informations sur la collection</option>
+          <option>Configuration personnalisée</option>
+          <option>Autre demande</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Décrivez votre projet..."></textarea></div>
+      <p class="form-note">Notre équipe vous répond dans les 48 heures. Chaque demande est traitée individuellement, avec la même attention que celle portée à chaque point de couture.</p>
+      <button class="btn-primary" style="width:100%" onclick="showToast('Message envoyé — Nous revenons vers vous sous 48h ✓')">Envoyer la demande →</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-brand"><img src="Fichier 4.png" alt="LMPK"><div class="footer-brand-txt">Maison de haute couture.<br>Inspirée par Tamara de Lempicka.</div></div>
+    <div><div class="footer-col-titre">Navigation</div><ul class="footer-links"><li><a onclick="showPage('home')">Accueil</a></li><li><a onclick="showPage('config')">Configurateur</a></li><li><a onclick="showPage('univers')">Univers LMPK</a></li><li><a onclick="showPage('contact')">L'Atelier</a></li></ul></div>
+    <div><div class="footer-col-titre">Contact</div><ul class="footer-links"><li><a>Paris, France</a></li><li><a>Sur rendez-vous</a></li></ul></div>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
